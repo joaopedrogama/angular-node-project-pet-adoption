@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="pt-9" [formGroup]="userform" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="input-first-name">Primeiro nome</label>
+                        <input id="input-first-name" type="text" class="form-control" placeholder="Ex: João" formControlName="firstName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="input-last-name">Sobrenome</label>
+                        <input id="input-last-name" type="text" class="form-control" placeholder="Ex: Silva" formControlName="lastName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="input-email">Email</label>
+                        <input id="input-email" type="text" class="form-control" placeholder="Ex: example@example.com" formControlName="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="input-password">Senha</label>
+                        <input id="input-password" type="text" class="form-control" placeholder="Insira uma senha" formControlName="password">
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

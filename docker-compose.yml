@@ -1,0 +1,50 @@
+services:
+  angular:
+    container_name: pets_angular
+    restart: unless-stopped
+    build:
+      context: ./angular/
+    env_file:
+      - ./envs/api.env
+    volumes:
+      - ./angular/:/usr/src/app/
+    depends_on:
+      - node
+    ports:
+      - 4200:4200
+    networks:
+      - pets
+
+  node:
+    container_name: pets_node
+    restart: unless-stopped
+    build:
+      context: ./node/
+    env_file:
+      - ./envs/postgres.env
+    volumes:
+      - ./node/:/usr/src/app/
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    networks:
+      - pets
+
+  postgres:
+    container_name: pets_postgres
+    image: postgres:16.3
+    restart: unless-stopped
+    volumes:
+      - database:/var/lib/postgresql/data/
+    env_file:
+      - ./envs/postgres.env
+    networks:
+      - pets
+
+volumes:
+  database:
+
+networks:
+  pets:
+    driver: bridge
