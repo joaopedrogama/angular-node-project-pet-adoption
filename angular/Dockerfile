@@ -9,4 +9,4 @@ RUN npm install @angular/cli
 
 EXPOSE 4200
 
-CMD ["ng", "server"]
+CMD ["npm", "run", "start"]
