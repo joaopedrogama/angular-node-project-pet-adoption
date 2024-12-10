@@ -32,6 +32,8 @@ export default class UserService {
         if (user) {
             const token = jwt.sign({ user }, process.env.SECRET_KEY || 'jvns', { expiresIn: '1d' });
             return { user, token }
+        } else {
+            return Error('Usuário não encontrado')
         }
     }
 
