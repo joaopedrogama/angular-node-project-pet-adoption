@@ -33,7 +33,7 @@ export class AuthComponent {
         nonNullable: true,
       }),
     });
-   }
+  }
 
   submitForm() {
     let observable = this.userService.login(

@@ -6,9 +6,11 @@ export const authGuard = () => {
     const userService =   inject(UserService);
     const router = inject(Router);
 
-    if (!userService.isAuthenticated) {
-        return router.navigate(["/login"]);
-    }
+    userService.isAuthenticated.subscribe((isAuth) => {
+        if (!isAuth) {
+            router.navigate(["/login"]);
+        }
+    });
 
     return true
 };

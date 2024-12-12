@@ -10,7 +10,6 @@ export class UserProfileService {
     createUser(user: Partial<User>): Observable<User> {
         return this.http.post<User>('users', user).pipe(
             map((response) => {
-                console.log(response);
                 return response;
             })
         );
