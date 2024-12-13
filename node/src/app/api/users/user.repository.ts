@@ -2,6 +2,7 @@ import { Repository } from "typeorm";
 import { User } from "./user.model";
 import { UserDTO } from "./user.dto";
 import { AppDataSource } from "../../../shared/typeorm/data-source";
+import { promises } from "dns";
 
 export default class UserRepository {
     private ormRepository: Repository<User>;
@@ -30,7 +31,7 @@ export default class UserRepository {
         return this.ormRepository.findBy(filter)
     }
 
-    findOne(filter: any) {
+    findOne(filter: any): Promise<User | null> {
         return this.ormRepository.findOneBy(filter)
     }
 }

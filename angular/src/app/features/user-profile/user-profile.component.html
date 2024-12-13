@@ -5,29 +5,66 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="input-first-name">Primeiro nome</label>
-                        <input id="input-first-name" type="text" class="form-control" placeholder="Ex: João" formControlName="firstName">
+                        <input
+                            id="input-first-name"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ex: João"
+                            formControlName="firstName"
+                            required>
                     </div>
+                    <span *ngIf="firstName && firstName.invalid && (firstName.dirty || firstName.touched)">
+                        <p class="ps-2 text-danger" *ngIf="firstName.hasError('required')">- Primeiro nome é obrigatório.</p>
+                    </span>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label for="input-last-name">Sobrenome</label>
-                        <input id="input-last-name" type="text" class="form-control" placeholder="Ex: Silva" formControlName="lastName">
+                        <input
+                            id="input-last-name"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ex: Silva"
+                            formControlName="lastName"
+                            required>
                     </div>
+                    <span *ngIf="lastName && lastName.invalid && (lastName.dirty || lastName.touched)">
+                        <p class="ps-2 text-danger" *ngIf="lastName.hasError('required')">- Sobrenome é obrigatório.</p>
+                    </span>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label for="input-email">Email</label>
-                        <input id="input-email" type="text" class="form-control" placeholder="Ex: example@example.com" formControlName="email">
+                        <input
+                            id="input-email"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ex: example@example.com"
+                            formControlName="email"
+                            required>
                     </div>
+                    <span *ngIf="email && email.invalid && (email.dirty || email.touched)">
+                        <p class="ps-2 text-danger" *ngIf="email.hasError('required')">- Email é obrigatório.</p>
+                        <p class="ps-2 text-danger" *ngIf="email.hasError('email')">- Email inválido.</p>
+                    </span>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label for="input-password">Senha</label>
-                        <input id="input-password" type="text" class="form-control" placeholder="Insira uma senha" formControlName="password">
+                        <input
+                            id="input-password"
+                            type="text"
+                            class="form-control"
+                            placeholder="Insira uma senha"
+                            formControlName="password"
+                            required>
                     </div>
+                    <span *ngIf="password && password.invalid && (password.dirty || password.touched)">
+                        <p class="ps-2 text-danger" *ngIf="password.hasError('required')">- Senha é obrigatório.</p>
+                    </span>
                 </div>
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="userform.invalid">Cadastrar</button>
                 </div>
             </div>
         </div>
