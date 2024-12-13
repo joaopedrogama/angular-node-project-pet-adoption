@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, UntypedFormGroup } from '@angular/forms';
 import { UserProfileService } from './user-profile.service';
 import { CommonModule } from '@angular/common';
+import { pipe } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 interface UserForm {
@@ -22,6 +24,7 @@ interface UserForm {
 export class UserProfileComponent {
   userform: UntypedFormGroup = new FormGroup<any>({});
   service: UserProfileService;
+  errorMessage: string = '';
 
   get firstName() { return this.userform.get('firstName'); }
   get lastName() { return this.userform.get('lastName'); }
@@ -49,12 +52,18 @@ export class UserProfileComponent {
     });
   }
 
-  constructor(service: UserProfileService) {
+  constructor(service: UserProfileService, private router: Router) {
     this.service = service
   }
 
   onSubmit() {
-    console.log(this.userform)
-    this.service.createUser({...this.userform.value}).subscribe();
+    this.service.createUser({...this.userform.value}).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        this.errorMessage = 'Ocorreu um erro ao cadastrar o usuário - ' + error.error.message;
+      }
+    });
   }
 }
